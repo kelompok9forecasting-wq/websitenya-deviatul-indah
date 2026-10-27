@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitty Math Y2K World ~ By Kak Deviatul Indah</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=VT323&family=Sniglet:wght@400;800&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    
+    <!-- KaTeX for LaTeX rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        y2k: {
+                            pink: '#FFC6FF',
+                            purple: '#E8AEFF',
+                            softblue: '#A0C4FF',
+                            cyan: '#9BF6FF',
+                            yellow: '#FDFFB6',
+                            peach: '#FFADAD',
+                            mint: '#CAFFBF',
+                            deepPink: '#FF66C4',
+                            borderPink: '#FF3399',
+                            darkText: '#5A3E62'
+                        }
+                    },
+                    fontFamily: {
+                        sniglet: ['Sniglet', 'cursive'],
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        pixel: ['VT323', 'monospace'],
+                        bubble: ['Bubblegum Sans', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Y2K Retro Aesthetics */
+        body {
+            background-color: #FDEDF6;
+            background-image: 
+                radial-gradient(#FFC6FF 2px, transparent 2px),
+                radial-gradient(#A0C4FF 2px, #FDEDF6 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            font-family: 'Fredoka', sans-serif;
+            color: #4A2E56;
+        }
+
+        /* STRICT LATEX/KATEX MANDATORY CSS OVERRIDES */
+        .mjx-chtml, .katex-display, .katex, div.math, span.math, .katex-html {
+            display: inline-block !important;
+            vertical-align: middle !important;
+            margin: 0 2px !important;
+            line-height: normal !important;
+        }
+        .katex-display {
+            padding: 0 !important;
+        }
+
+        /* Y2K Window & Card Style */
+        .y2k-window {
+            background: rgba(255, 255, 255, 0.92);
+            border: 3px solid #FF80BF;
+            border-radius: 20px;
+            box-shadow: 6px 6px 0px #FFB3D9, 10px 10px 0px rgba(160, 196, 255, 0.5);
+        }
+
+        .y2k-header {
+            background: linear-gradient(90deg, #FF9EE2, #B3C5FF);
+            border-bottom: 3px solid #FF80BF;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+        }
+
+        /* Buttons Y2K Style */
+        .y2k-btn {
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFD6EF 100%);
+            border: 2px solid #FF66B2;
+            box-shadow: 0px 4px 0px #FF3399;
+            transition: all 0.1s ease;
+            font-weight: 600;
+        }
+
+        .y2k-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 6px 0px #FF3399;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFB8E3 100%);
+        }
+
+        .y2k-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0px 1px 0px #FF3399;
+        }
+
+        .y2k-btn-primary {
+            background: linear-gradient(180deg, #FFB3E6 0%, #FF66C4 100%);
+            color: white;
+            border: 2px solid #CC0077;
+            box-shadow: 0px 4px 0px #990055;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .y2k-btn-primary:hover {
+            background: linear-gradient(180deg, #FFC2EC 0%, #FF4DC0 100%);
+            box-shadow: 0px 6px 0px #990055;
+        }
+
+        .y2k-btn-primary:active {
+            transform: translateY(3px);
+            box-shadow: 0px 1px 0px #990055;
+        }
+
+        .y2k-btn-cyan {
+            background: linear-gradient(180deg, #E0FFFF 0%, #80E5FF 100%);
+            color: #005577;
+            border: 2px solid #0099CC;
+            box-shadow: 0px 4px 0px #006688;
+        }
+
+        .y2k-badge {
+            background: #FFE6F2;
+            border: 2px solid #FF80BF;
+            border-radius: 999px;
+            padding: 2px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #D6006E;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFE6F0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FF99C8;
+            border-radius: 10px;
+            border: 2px solid #FFE6F0;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF66A3;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Pulse glow */
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 10px #FFC6FF, 0 0 20px #FFC6FF; }
+            50% { box-shadow: 0 0 20px #FF66C4, 0 0 30px #FF66C4; }
+        }
+
+        .y2k-glow {
+            animation: glow 3s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-16">
+
+    <!-- Top Banner / Navbar -->
+    <header class="sticky top-0 z-50 px-4 py-3 bg-white/80 backdrop-blur-md border-b-4 border-y2k-borderPink shadow-lg">
+        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-y2k-pink border-2 border-y2k-borderPink flex items-center justify-center text-2xl floating shadow-sm">
+                    🎀
+                </div>
+                <div>
+                    <h1 class="font-sniglet text-2xl md:text-3xl font-extrabold text-y2k-deepPink tracking-wide drop-shadow-sm">
+                        KITTY MATH Y2K WORLD ✨
+                    </h1>
+                    <p class="text-xs md:text-sm text-purple-600 font-semibold flex items-center gap-1">
+                        <span>💖</span> Dibuat Spesial Oleh: <span class="bg-y2k-yellow px-2 py-0.5 rounded-full border border-y2k-borderPink font-bold">Kak Deviatul Indah</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="flex items-center gap-2 md:gap-4 bg-y2k-pink/30 p-2 rounded-2xl border-2 border-y2k-pink">
+                <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-pink-300 shadow-sm">
+                    <span class="text-xl">⭐</span>
+                    <div class="text-xs">
+                        <div class="text-gray-500 font-bold leading-none">Skor Total</div>
+                        <div id="scoreDisplay" class="font-black text-lg text-y2k-deepPink leading-none">0</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-purple-300 shadow-sm">
+                    <span class="text-xl">🎯</span>
+                    <div class="text-xs">
+                        <div class="text-gray-500 font-bold leading-none">Terjawab</div>
+                        <div id="answeredDisplay" class="font-black text-lg text-purple-600 leading-none">0 / 20</div>
+                    </div>
+                </div>
+
+                <button onclick="resetProgress()" class="y2k-btn px-2.5 py-1.5 rounded-xl text-xs text-pink-600 hover:text-red-600 flex items-center gap-1" title="Reset Progress">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 pt-6 space-y-8">
+
+        <!-- Welcome Banner Y2K Aesthetics -->
+        <section class="y2k-window p-6 relative overflow-hidden bg-gradient-to-r from-y2k-pink/40 via-y2k-purple/30 to-y2k-softblue/40">
+            <div class="absolute -right-10 -bottom-10 opacity-20 text-9xl pointer-events-none select-none">💖</div>
+            <div class="absolute right-10 top-4 opacity-30 text-6xl pointer-events-none floating select-none">🌸</div>
+            
+            <div class="max-w-3xl relative z-10 space-y-3">
+                <div class="inline-flex items-center gap-2 bg-white/90 border-2 border-pink-400 px-3 py-1 rounded-full text-xs font-bold text-pink-600 shadow-sm">
+                    <span>✨</span> BELAJAR MATEMATIKA JADI SUPER SERU & GEMAS!
+                </div>
+                <h2 class="font-sniglet text-3xl md:text-4xl font-extrabold text-y2k-darkText leading-tight">
+                    Halo Kitty! 👋 Siap Menjadi Detektif Matematika Handal? 🕵️‍♀️✨
+                </h2>
+                <p class="text-sm md:text-base text-purple-900 leading-relaxed font-medium">
+                    Di sini Kitty bisa belajar ringkasan materi lengkap, trik super cepat, dan mencoba 20 bank soal interaktif lengkap dengan pembahasan mendalam karya <b>Kak Deviatul Indah</b>!
+                </p>
+
+                <!-- Action Buttons Navigation -->
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <a href="#tips-section" class="y2k-btn y2k-btn-primary px-5 py-2.5 rounded-2xl text-sm flex items-center gap-2">
+                        <span>🌟</span> Trik Super Kilat
+                    </a>
+                    <a href="#materi-section" class="y2k-btn bg-white text-purple-700 px-5 py-2.5 rounded-2xl text-sm flex items-center gap-2">
+                        <span>📚</span> Materi Sesi 1
+                    </a>
+                    <a href="#soal-section" class="y2k-btn y2k-btn-cyan px-5 py-2.5 rounded-2xl text-sm flex items-center gap-2">
+                        <span>📝</span> Bank Soal Interaktif
+                    </a>
+                    <button onclick="toggleScratchpad()" class="y2k-btn bg-yellow-200 text-yellow-800 border-yellow-400 px-4 py-2.5 rounded-2xl text-sm flex items-center gap-2">
+                        <span>✏️</span> Cakar-Cakar / Scratchpad
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIPS & TRIK SUPER KILAT -->
+        <section id="tips-section" class="y2k-window overflow-hidden">
+            <div class="y2k-header p-4 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🌟</span>
+                    <h3 class="font-sniglet text-xl md:text-2xl font-bold text-white drop-shadow">
+                        TIPS & TRIK SUPER KILAT UNTUK KITTY
+                    </h3>
+                </div>
+                <span class="text-xs bg-white/80 font-bold px-3 py-1 rounded-full text-pink-600 border border-pink-300">
+                    BACA INI DULU YA! ✨
+                </span>
+            </div>
+
+            <div class="p-6 bg-white/90 space-y-6 text-y2k-darkText">
+                <p class="text-sm md:text-base font-semibold text-purple-700 bg-pink-50 p-3 rounded-xl border border-pink-200">
+                    Sebelum mulai mengerjakan, yuk ingat-ingat trik jitu ini supaya makin jago:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Tip 1 -->
+                    <div class="p-4 rounded-2xl bg-gradient-to-br from-pink-50 to-purple-50 border-2 border-pink-200 shadow-sm hover:border-pink-400 transition-all">
+                        <div class="flex items-start gap-3">
+                            <span class="text-3xl p-2 bg-white rounded-2xl border border-pink-300 shadow-sm">🕵️‍♂️</span>
+                            <div class="space-y-1">
+                                <h4 class="font-bold text-lg text-pink-700">1. Detektif Angka (Nilai Tempat)</h4>
+                                <ul class="text-xs md:text-sm space-y-2 list-disc list-inside text-gray-700 font-medium">
+                                    <li>Mulailah membaca petunjuk dari yang paling pasti (misalnya: "angka satuannya bilangan ganjil antara 1 dan 4" $\rightarrow$ sudah pasti angka 3).</li>
+                                    <li>Gunakan opsi pilihan ganda untuk uji balik (masukkan pilihan jawaban ke dalam syarat soal satu per satu).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tip 2 -->
+                    <div class="p-4 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 shadow-sm hover:border-blue-400 transition-all">
+                        <div class="flex items-start gap-3">
+                            <span class="text-3xl p-2 bg-white rounded-2xl border border-blue-300 shadow-sm">🔄</span>
+                            <div class="space-y-1">
+                                <h4 class="font-bold text-lg text-blue-700">2. Pola Berulang (Siklus Hari)</h4>
+                                <ul class="text-xs md:text-sm space-y-2 list-disc list-inside text-gray-700 font-medium">
+                                    <li>Untuk soal siklus (seperti hari atau mesin biskuit), gunakan cara sisa pembagian.</li>
+                                    <li>Contoh: Siklus 3 hari, cari hari ke-7 $\rightarrow$ $7 \div 3 = 2$ sisa 1. Artinya, posisinya sama persis dengan Hari ke-1.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tip 3 -->
+                    <div class="p-4 rounded-2xl bg-gradient-to-br from-yellow-50 to-orange-50 border-2 border-yellow-200 shadow-sm hover:border-yellow-400 transition-all">
+                        <div class="flex items-start gap-3">
+                            <span class="text-3xl p-2 bg-white rounded-2xl border border-yellow-300 shadow-sm">📦</span>
+                            <div class="space-y-1">
+                                <h4 class="font-bold text-lg text-amber-800">3. Persamaan Kotak Kosong / Aljabar ($\square$ / $\Delta$)</h4>
+                                <p class="text-xs md:text-sm text-gray-700 font-medium">Pindahkan angka ke ruas sebelah dengan operasi yang berlawanan:</p>
+                                <div class="grid grid-cols-2 gap-1 text-xs font-bold pt-1">
+                                    <span class="bg-white px-2 py-1 rounded border border-amber-200">Tambah ($+$) $\rightarrow$ Kurang ($-$)</span>
+                                    <span class="bg-white px-2 py-1 rounded border border-amber-200">Kurang ($-$) $\rightarrow$ Tambah ($+$)</span>
+                                    <span class="bg-white px-2 py-1 rounded border border-amber-200">Kali ($\times$) $\rightarrow$ Bagi ($\div$)</span>
+                                    <span class="bg-white px-2 py-1 rounded border border-amber-200">Bagi ($\div$) $\rightarrow$ Kali ($\times$)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tip 4 -->
+                    <div class="p-4 rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 shadow-sm hover:border-green-400 transition-all">
+                        <div class="flex items-start gap-3">
+                            <span class="text-3xl p-2 bg-white rounded-2xl border border-green-300 shadow-sm">🍰</span>
+                            <div class="space-y-1">
+                                <h4 class="font-bold text-lg text-emerald-700">4. Pecahan pada Soal Cerita</h4>
+                                <ul class="text-xs md:text-sm space-y-2 list-disc list-inside text-gray-700 font-medium">
+                                    <li>Ingat rumusnya: "Dibagi dengan penyebut di bawah, lalu dikali dengan pembilang di atas".</li>
+                                    <li>Contoh: $\frac{1}{4}$ dari $360 \rightarrow 360 \div 4 = 90$.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RINGKASAN MATERI SESI 1 -->
+        <section id="materi-section" class="y2k-window overflow-hidden">
+            <div class="y2k-header p-4 bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">📖</span>
+                    <div>
+                        <h3 class="font-sniglet text-xl md:text-2xl font-bold text-white drop-shadow">
+                            SESI 1: Detektif Bilangan & Rahasia Operasi Hitung
+                        </h3>
+                        <p class="text-xs text-white/90 font-medium">
+                            Fokus: Teori Bilangan, Nilai Tempat, Pola Bilangan, dan Matematika Cerita
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 bg-white/95 space-y-6">
+                <!-- Modul 1 -->
+                <div class="border-2 border-pink-200 rounded-2xl p-5 bg-pink-50/40 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-full bg-pink-400 text-white font-bold flex items-center justify-center text-sm shadow-sm">1</span>
+                        <h4 class="font-bold text-lg text-pink-700">Detektif Ciri-Ciri Bilangan 🕵️‍♂️</h4>
+                    </div>
+                    <ul class="space-y-2 text-sm text-gray-700 font-medium pl-4 border-l-2 border-pink-300">
+                        <li>
+                            <b>Konsep Ratusan, Puluhan, dan Satuan:</b> Memahami nilai tempat bilangan 3 angka ($N = \text{Ratusan} + \text{Puluhan} + \text{Satuan}$).
+                        </li>
+                        <li>
+                            <b>Tebak Angka Rahasia:</b>
+                            <ul class="list-disc list-inside pl-4 pt-1 space-y-1 text-gray-600">
+                                <li>Mengenal bilangan ganjil vs genap.</li>
+                                <li>Hubungan antar-digit (misal: digit ratusan 6 lebihnya dari satuan, atau digit puluhan 3 kali digit satuan).</li>
+                                <li>Menghitung jumlah total digit.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <b>Pembulatan Bilangan:</b> Cara membulatkan bilangan ke ratusan terdekat.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Modul 2 -->
+                <div class="border-2 border-purple-200 rounded-2xl p-5 bg-purple-50/40 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-full bg-purple-400 text-white font-bold flex items-center justify-center text-sm shadow-sm">2</span>
+                        <h4 class="font-bold text-lg text-purple-700">Pola Bilangan & Barisan Berulang 🔄</h4>
+                    </div>
+                    <ul class="space-y-2 text-sm text-gray-700 font-medium pl-4 border-l-2 border-purple-300">
+                        <li>
+                            <b>Aturan Pola:</b> Menemukan pola loncat/berulang (misal: "dikali 4 lalu dikurangi 6" atau siklus cetak buku 3 harian).
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Modul 3 -->
+                <div class="border-2 border-blue-200 rounded-2xl p-5 bg-blue-50/40 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-full bg-blue-400 text-white font-bold flex items-center justify-center text-sm shadow-sm">3</span>
+                        <h4 class="font-bold text-lg text-blue-700">Operasi Hitung & Operasi Campuran 💡</h4>
+                    </div>
+                    <ul class="space-y-2 text-sm text-gray-700 font-medium pl-4 border-l-2 border-blue-300">
+                        <li>
+                            <b>Penjumlahan, Pengurangan, Perkalian, dan Pembagian:</b> Strategi menghitung cepat dan teliti.
+                        </li>
+                        <li>
+                            <b>Persamaan / Simbol Rahasia:</b> Mencari nilai huruf atau bangun yang hilang pada kalimat matematika (misal: $4 \times \text{A} + 6 = 30$).
+                        </li>
+                        <li>
+                            <b>Soal Cerita & Pecahan Sederhana:</b>
+                            <ul class="list-disc list-inside pl-4 pt-1 space-y-1 text-gray-600">
+                                <li>Kalimat matematika dengan tanda kurung ( ).</li>
+                                <li>Mengenal konsep pecahan bagian: $\frac{1}{2}$, $\frac{1}{3}$, $\frac{1}{5}$, dan $\frac{2}{5}$ pada soal cerita.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANK SOAL INTERAKTIF -->
+        <section id="soal-section" class="y2k-window overflow-hidden">
+            <div class="y2k-header p-4 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">📝</span>
+                    <div>
+                        <h3 class="font-sniglet text-xl md:text-2xl font-bold text-white drop-shadow">
+                            BANK SOAL LATIHAN SESI 1 INTERAKTIF
+                        </h3>
+                        <p class="text-xs text-white/90">Klik jawaban untuk mengecek & buka pembahasan kapan saja!</p>
+                    </div>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-1.5 text-xs">
+                    <button onclick="filterQuestions('all')" id="btn-filter-all" class="px-3 py-1.5 rounded-full bg-white text-pink-600 font-bold border border-pink-300 shadow-sm hover:bg-pink-100 transition-all active-filter">
+                        Semua (20)
+                    </button>
+                    <button onclick="filterQuestions('A')" id="btn-filter-A" class="px-3 py-1.5 rounded-full bg-white/80 text-purple-700 font-bold border border-purple-200 hover:bg-white transition-all">
+                        Bagian A: Teori
+                    </button>
+                    <button onclick="filterQuestions('B')" id="btn-filter-B" class="px-3 py-1.5 rounded-full bg-white/80 text-purple-700 font-bold border border-purple-200 hover:bg-white transition-all">
+                        Bagian B: Pola
+                    </button>
+                    <button onclick="filterQuestions('C')" id="btn-filter-C" class="px-3 py-1.5 rounded-full bg-white/80 text-purple-700 font-bold border border-purple-200 hover:bg-white transition-all">
+                        Bagian C: Aljabar
+                    </button>
+                    <button onclick="filterQuestions('D')" id="btn-filter-D" class="px-3 py-1.5 rounded-full bg-white/80 text-purple-700 font-bold border border-purple-200 hover:bg-white transition-all">
+                        Bagian D: Cerita
+                    </button>
+                </div>
+            </div>
+
+            <!-- Questions Container -->
+            <div id="questionsContainer" class="p-4 md:p-6 bg-white/95 space-y-6">
+                <!-- Dynamically Populated by JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Canvas Scratchpad Modal -->
+    <div id="scratchpadModal" class="fixed inset-0 bg-black/50 z-50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="y2k-window w-full max-w-2xl bg-white p-4 space-y-3 relative">
+            <div class="flex justify-between items-center border-b border-pink-200 pb-2">
+                <div class="flex items-center gap-2 font-bold text-pink-600 font-sniglet text-lg">
+                    <span>✏️</span> Cakar-Cakar Matematika Kitty
+                </div>
+                <button onclick="toggleScratchpad()" class="text-gray-400 hover:text-red-500 font-bold text-xl px-2">
+                    &times;
+                </button>
+            </div>
+            
+            <p class="text-xs text-gray-500">Gunakan jarimu atau mouse untuk mencakar-cakar hitungan di bawah ini!</p>
+            
+            <div class="border-2 border-dashed border-pink-300 rounded-xl overflow-hidden bg-pink-50/20 relative">
+                <canvas id="scratchCanvas" width="600" height="350" class="w-full h-64 md:h-80 cursor-crosshair touch-none"></canvas>
+            </div>
+
+            <div class="flex justify-between items-center pt-1">
+                <div class="flex gap-2">
+                    <button onclick="setScratchColor('#FF3399')" class="w-7 h-7 rounded-full bg-pink-500 border-2 border-white shadow-md"></button>
+                    <button onclick="setScratchColor('#9B51E0')" class="w-7 h-7 rounded-full bg-purple-600 border-2 border-white shadow-md"></button>
+                    <button onclick="setScratchColor('#2F80ED')" class="w-7 h-7 rounded-full bg-blue-500 border-2 border-white shadow-md"></button>
+                    <button onclick="setScratchColor('#27AE60')" class="w-7 h-7 rounded-full bg-green-500 border-2 border-white shadow-md"></button>
+                    <button onclick="setScratchColor('#000000')" class="w-7 h-7 rounded-full bg-black border-2 border-white shadow-md"></button>
+                </div>
+                <button onclick="clearScratchpad()" class="y2k-btn px-4 py-1.5 rounded-xl text-xs text-red-600 bg-red-50 border-red-300">
+                    <i class="fa-solid fa-trash mr-1"></i> Hapus Cakaran
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-12 text-center text-xs text-purple-600 font-semibold space-y-1">
+        <p>✨ Built with Love for Kitty's Math Journey ~ By Kak Deviatul Indah ✨</p>
+        <p class="text-gray-400">Y2K Colorful Aesthetic &bull; Interactive Math Platform</p>
+    </footer>
+
+    <!-- JavaScript Data and Logic -->
+    <script>
+        // Exact dataset without reduction or abbreviation
+        const questionsData = [
+            // BAGIAN A
+            {
+                id: 1,
+                section: "A",
+                sectionTitle: "Bagian A: Teori & Detektif Bilangan",
+                text: "Sebuah bilangan tiga angka memiliki ciri-ciri:\n- Angka ratusannya adalah 4 lebihnya dari angka satuannya.\n- Angka puluhannya adalah angka ratusan dikurangi 3.\n- Angka satuannya adalah bilangan ganjil yang kurang dari 4 dan lebih dari 1.\n\nBilangan yang dimaksud adalah....",
+                options: [
+                    { id: "a", text: "743" },
+                    { id: "b", text: "632" },
+                    { id: "c", text: "854" },
+                    { id: "d", text: "753" }
+                ],
+                correct: "a",
+                explanation: "<b>Jawaban: a. 743</b><br><br><b>Cara:</b><br>- Satuan = bilangan ganjil antara 1 dan 4 $\\rightarrow$ 3.<br>- Ratusan = $4 + 3 = \\mathbf{7}$.<br>- Puluhan = $7 - 3 = \\mathbf{4}$.<br>- Jadi, 743."
+            },
+            {
+                id: 2,
+                section: "A",
+                sectionTitle: "Bagian A: Teori & Detektif Bilangan",
+                text: "Kitty memiliki sebuah bilangan tiga angka $N$. Bilangan tersebut memiliki ciri-ciri berikut:\n- $N$ adalah bilangan ganjil antara 300 dan 400.\n- Digit puluhannya adalah 7.\n- Jumlah ketiga digitnya adalah 15.\n\nBilangan $N$ yang dimiliki Kitty adalah....",
+                options: [
+                    { id: "a", text: "373" },
+                    { id: "b", text: "375" },
+                    { id: "c", text: "377" },
+                    { id: "d", text: "371" }
+                ],
+                correct: "b",
+                explanation: "<b>Jawaban: b. 375</b><br><br><b>Cara:</b><br>- Bilangan antara 300-400 berawalan angka 3.<br>- Puluhan = 7.<br>- Jumlah digit = 15, maka satuan = $15 - (3 + 7) = \\mathbf{5}$.<br>- Jadi, 375."
+            },
+            {
+                id: 3,
+                section: "A",
+                sectionTitle: "Bagian A: Teori & Detektif Bilangan",
+                text: "Jumlah dua buah bilangan cacah adalah 920. Jika salah satu bilangan tersebut 240 lebih besar dari bilangan lainnya, maka nilai bilangan yang lebih kecil adalah....",
+                options: [
+                    { id: "a", text: "340" },
+                    { id: "b", text: "480" },
+                    { id: "c", text: "580" },
+                    { id: "d", text: "680" }
+                ],
+                correct: "a",
+                explanation: "<b>Jawaban: a. 340</b><br><br><b>Cara:</b><br>$(920 - 240) \\div 2 = 680 \\div 2 = \\mathbf{340}$ (bilangan kecil)."
+            },
+            {
+                id: 4,
+                section: "A",
+                sectionTitle: "Bagian A: Teori & Detektif Bilangan",
+                text: "Dua bilangan cacah, $A$ dan $B$, dibulatkan ke ratusan terdekat. Bilangan $A$ dibulatkan menjadi 400, dan bilangan $B$ dibulatkan menjadi 800. Pernyataan berikut yang benar mengenai selisih $B$ dan $A$ adalah....",
+                options: [
+                    { id: "a", text: "Selisih terbesar yang mungkin adalah 499" },
+                    { id: "b", text: "Selisih terkecil yang mungkin adalah 250" },
+                    { id: "c", text: "Selisih terbesar yang mungkin adalah 400" },
+                    { id: "d", text: "Selisih terkecil yang mungkin adalah 301" }
+                ],
+                correct: "d",
+                explanation: "<b>Jawaban: d. Selisih terkecil yang mungkin adalah 301</b><br><br><b>Cara:</b><br>- $A$ (dibulatkan ke 400) ada di rentang $350 - 449$.<br>- $B$ (dibulatkan ke 800) ada di rentang $750 - 849$.<br>- Selisih terkecil = $B_{\\text{terkecil}} - A_{\\text{terbesar}} = 750 - 449 = \\mathbf{301}$."
+            },
+            {
+                id: 5,
+                section: "A",
+                sectionTitle: "Bagian A: Teori & Detektif Bilangan",
+                text: "Sebuah bilangan tiga angka memiliki jumlah digit 21. Angka satuannya adalah 9. Jika angka ratusannya dua kali lipat dari angka puluhannya, maka bilangan tersebut adalah....",
+                options: [
+                    { id: "a", text: "849" },
+                    { id: "b", text: "639" },
+                    { id: "c", text: "429" },
+                    { id: "d", text: "939" }
+                ],
+                correct: "a",
+                explanation: "<b>Jawaban: a. 849</b><br><br><b>Cara:</b><br>- Satuan = 9.<br>- Sisa jumlah digit = $21 - 9 = 12$.<br>- Ratusan adalah 2 kali puluhan, maka Ratusan = 8 dan Puluhan = 4 ($8 + 4 = 12$).<br>- Jadi, 849."
+            },
+            {
+                id: 6,
+                section: "A",
+                sectionTitle: "Bagian A: Teori & Detektif Bilangan",
+                text: "Kitty sedang memikirkan sebuah bilangan cacah tiga angka. Bilangan tersebut memiliki ciri-ciri:\n- Digit ratusannya kurang dari 4.\n- Digit puluhannya adalah dua kali digit satuannya.\n- Jumlah semua digitnya adalah 10.\n\nJika bilangan tersebut dikurangi 18, kemudian dikalikan 4, hasil akhirnya adalah....",
+                options: [
+                    { id: "a", text: "960" },
+                    { id: "b", text: "936" },
+                    { id: "c", text: "952" },
+                    { id: "d", text: "944" }
+                ],
+                correct: "c",
+                explanation: "<b>Jawaban: c. 952</b><br><br><b>Cara:</b><br>- Cari bilangan tiga angka (misal ratusan = 2, puluhan = $2 \\times 2 = 4$, satuan = $10 - (2+4) = 4 \\rightarrow$ cek kombinasi lain, misal ratusan = 2, puluhan = 6, satuan = 2 $\\rightarrow$ total 10).<br>- Hasil akhir: $(256 - 18) \\times 4 = 238 \\times 4 = \\mathbf{952}$."
+            },
+            {
+                id: 7,
+                section: "A",
+                sectionTitle: "Bagian A: Teori & Detektif Bilangan",
+                text: "Jika $X$ adalah bilangan genap antara 400 dan 500, dan $Y$ adalah bilangan ganjil antara 100 dan 200, bentuk operasi berikut yang pasti menghasilkan bilangan ganjil adalah....",
+                options: [
+                    { id: "a", text: "$X + Y$" },
+                    { id: "b", text: "$X \\times Y$" },
+                    { id: "c", text: "$X + 2Y$" },
+                    { id: "d", text: "$X \\times (Y + 1)$" }
+                ],
+                correct: "a",
+                explanation: "<b>Jawaban: a. $X + Y$</b><br><br><b>Cara:</b><br>$\\text{Genap} + \\text{Ganjil} = \\mathbf{\\text{Ganjil}}$."
+            },
+
+            // BAGIAN B
+            {
+                id: 8,
+                section: "B",
+                sectionTitle: "Bagian B: Pola Bilangan & Barisan",
+                text: "Sebuah barisan bilangan didefinisikan dengan aturan: bilangan berikutnya diperoleh dari 3 kali bilangan sebelumnya, kemudian dikurangi 5. Jika bilangan pertama dalam barisan ini adalah 4, maka bilangan ketiga adalah....",
+                options: [
+                    { id: "a", text: "7" },
+                    { id: "b", text: "16" },
+                    { id: "c", text: "43" },
+                    { id: "d", text: "124" }
+                ],
+                correct: "c",
+                explanation: "<b>Jawaban: c. 43</b><br><br><b>Cara:</b><br>- Suku 1 = 4<br>- Suku 2 = $(3 \\times 4) - 5 = 12 - 5 = \\mathbf{7}$<br>- Suku 3 = $(3 \\times 7) - 5 = 21 - 5 = \\mathbf{43}$"
+            },
+            {
+                id: 9,
+                section: "B",
+                sectionTitle: "Bagian B: Pola Bilangan & Barisan",
+                text: "Mesin pembuat biskuit milik Kitty bekerja dengan siklus 3 hari. Jumlah biskuit yang dihasilkan mengikuti pola:\n- Hari ke-1: 120 biskuit\n- Hari ke-2: 140 biskuit\n- Hari ke-3: 160 biskuit\n\nPola ini berulang terus-menerus. Banyaknya biskuit yang dicetak pada hari ke-7 adalah....",
+                options: [
+                    { id: "a", text: "120" },
+                    { id: "b", text: "140" },
+                    { id: "c", text: "160" },
+                    { id: "d", text: "180" }
+                ],
+                correct: "a",
+                explanation: "<b>Jawaban: a. 120</b><br><br><b>Cara:</b><br>- Siklus 3 hari.<br>- Cari hari ke-7 $\\rightarrow$ $7 \\div 3 = 2$ sisa 1.<br>- Artinya sama dengan Hari ke-1 = 120 biskuit."
+            },
+            {
+                id: 10,
+                section: "B",
+                sectionTitle: "Bagian B: Pola Bilangan & Barisan",
+                text: "Suatu pola bilangan digambarkan sebagai berikut:\n\n$$8, 15, 22, 29, 36, \\dots$$\n\nSuku ke-8 dari barisan tersebut adalah....",
+                options: [
+                    { id: "a", text: "50" },
+                    { id: "b", text: "57" },
+                    { id: "c", text: "64" },
+                    { id: "d", text: "71" }
+                ],
+                correct: "b",
+                explanation: "<b>Jawaban: b. 57</b><br><br><b>Cara:</b><br>- Pola bertambah $+7$.<br>- Suku ke-8 dapat dihitung manual atau rumus: $8 + (7 \\times 7) = 8 + 49 = \\mathbf{57}$."
+            },
+
+            // BAGIAN C
+            {
+                id: 11,
+                section: "C",
+                sectionTitle: "Bagian C: Aljabar, Operasi Hitung, & Simbol",
+                text: "Terdapat persamaan kalimat matematika berikut:\n\n$$5 \\times \\square + 12 = 42$$\n\nNilai dari $\\square$ pada kalimat matematika di atas adalah....",
+                options: [
+                    { id: "a", text: "5" },
+                    { id: "b", text: "6" },
+                    { id: "c", text: "7" },
+                    { id: "d", text: "8" }
+                ],
+                correct: "b",
+                explanation: "<b>Jawaban: b. 6</b><br><br><b>Cara:</b><br>$5 \\times \\square = 42 - 12 \\rightarrow 5 \\times \\square = 30 \\rightarrow \\square = 30 \\div 5 = \\mathbf{6}$."
+            },
+            {
+                id: 12,
+                section: "C",
+                sectionTitle: "Bagian C: Aljabar, Operasi Hitung, & Simbol",
+                text: "Kitty membagi bilangan $864 \\div 24$ dan mendapatkan hasil 36. Pernyataan hubungan perkalian berikut yang benar adalah....",
+                options: [
+                    { id: "a", text: "$24 \\times 36 = 864$" },
+                    { id: "b", text: "$24 \\times 35 = 864$" },
+                    { id: "c", text: "$23 \\times 36 = 864$" },
+                    { id: "d", text: "$24 \\times 37 = 864$" }
+                ],
+                correct: "a",
+                explanation: "<b>Jawaban: a. $24 \\times 36 = 864$</b><br><br><b>Cara:</b><br>Operasi kebalikan dari pembagian adalah perkalian."
+            },
+            {
+                id: 13,
+                section: "C",
+                sectionTitle: "Bagian C: Aljabar, Operasi Hitung, & Simbol",
+                text: "Pada sebuah garis bilangan, Kitty mula-mula berdiri di titik 645. Kitty berjalan 55 langkah ke kiri, kemudian berjalan lagi 90 langkah ke kanan. Posisi Kitty pada garis bilangan sekarang berada di titik....",
+                options: [
+                    { id: "a", text: "680" },
+                    { id: "b", text: "500" },
+                    { id: "c", text: "790" },
+                    { id: "d", text: "670" }
+                ],
+                correct: "a",
+                explanation: "<b>Jawaban: a. 680</b><br><br><b>Cara:</b><br>$645 - 55 + 90 = 590 + 90 = \\mathbf{680}$ (ke kiri dikurang, ke kanan ditambah)."
+            },
+            {
+                id: 14,
+                section: "C",
+                sectionTitle: "Bagian C: Aljabar, Operasi Hitung, & Simbol",
+                text: "Diketahui kalimat matematika $7 \\times \\Delta - 18 = 38$. Nilai $\\Delta$ yang memenuhi adalah....",
+                options: [
+                    { id: "a", text: "7" },
+                    { id: "b", text: "8" },
+                    { id: "c", text: "9" },
+                    { id: "d", text: "10" }
+                ],
+                correct: "b",
+                explanation: "<b>Jawaban: b. 8</b><br><br><b>Cara:</b><br>$7 \\times \\Delta = 38 + 18 \\rightarrow 7 \\times \\Delta = 56 \\rightarrow \\Delta = 56 \\div 7 = \\mathbf{8}$."
+            },
+            {
+                id: 15,
+                section: "C",
+                sectionTitle: "Bagian C: Aljabar, Operasi Hitung, & Simbol",
+                text: "Kitty dan kawan-kawannya mengumpulkan donasi. Kelompok A berhasil mengumpulkan 8 kaleng yang masing-masing berisi uang Rp2.000,00. Kelompok B berhasil mengumpulkan 15 kaleng yang masing-masing berisi uang Rp1.000,00. Pernyataan perbandingan yang tepat adalah....",
+                options: [
+                    { id: "a", text: "Jumlah donasi Kelompok A $<$ Kelompok B" },
+                    { id: "b", text: "Jumlah donasi Kelompok A $>$ Kelompok B" },
+                    { id: "c", text: "Jumlah donasi Kelompok A $=$ Kelompok B" },
+                    { id: "d", text: "Tidak dapat ditentukan" }
+                ],
+                correct: "b",
+                explanation: "<b>Jawaban: b. Jumlah donasi Kelompok A $>$ Kelompok B</b><br><br><b>Cara:</b><br>- Kelp A = $8 \\times 2.000 = \\text{Rp}16.000,00$.<br>- Kelp B = $15 \\times 1.000 = \\text{Rp}15.000,00$.<br>- ($16.000 > 15.000$)."
+            },
+
+            // BAGIAN D
+            {
+                id: 16,
+                section: "D",
+                sectionTitle: "Bagian D: Soal Cerita & Pecahan Sederhana",
+                text: "Untuk membuat 4 porsi kue cubit, Bu Ani memerlukan 300 gram tepung terigu. Jika Kitty ingin membuat 10 porsi kue cubit dengan resep yang sama, total tepung yang diperlukan adalah....",
+                options: [
+                    { id: "a", text: "600 gram" },
+                    { id: "b", text: "750 gram" },
+                    { id: "c", text: "900 gram" },
+                    { id: "d", text: "1.200 gram" }
+                ],
+                correct: "b",
+                explanation: "<b>Jawaban: b. 750 gram</b><br><br><b>Cara:</b><br>- Tepung per porsi = $300 \\div 4 = 75$ gram.<br>- Untuk 10 porsi = $10 \\times 75 = \\mathbf{750\\text{ gram}}$."
+            },
+            {
+                id: 17,
+                section: "D",
+                sectionTitle: "Bagian D: Soal Cerita & Pecahan Sederhana",
+                text: "Kitty membeli 5 kotak pensil warna. Setiap kotak berisi 18 pensil. Kitty memberikan 15 pensil kepada adiknya. Sisa pensil warna milik Kitty kemudian dibagikan sama rata kepada 5 orang temannya. Banyak pensil yang diterima oleh setiap teman Kitty adalah....",
+                options: [
+                    { id: "a", text: "12" },
+                    { id: "b", text: "15" },
+                    { id: "c", text: "16" },
+                    { id: "d", text: "18" }
+                ],
+                correct: "b",
+                explanation: "<b>Jawaban: b. 15</b><br><br><b>Cara:</b><br>- Total awal = $5 \\times 18 = 90$.<br>- Sisa setelah dikasih adik = $90 - 15 = 75$.<br>- Dibagi 5 teman = $75 \\div 5 = \\mathbf{15}$."
+            },
+            {
+                id: 18,
+                section: "D",
+                sectionTitle: "Bagian D: Soal Cerita & Pecahan Sederhana",
+                text: "Kitty mempunyai 40 butir permen cokelat. Ibu memberikan tambahan 20 permen cokelat lagi. Seluruh permen tersebut kemudian dimasukkan ke dalam 5 kantong plastik secara sama rata. Kalimat matematika yang tepat untuk menghitung jumlah permen di setiap kantong plastik adalah....",
+                options: [
+                    { id: "a", text: "$40 + 20 \\div 5$" },
+                    { id: "b", text: "$(40 + 20) \\div 5$" },
+                    { id: "c", text: "$40 \\div (20 + 5)$" },
+                    { id: "d", text: "$(40 \\div 5) + 20$" }
+                ],
+                correct: "b",
+                explanation: "<b>Jawaban: b. $(40 + 20) \\div 5$</b><br><br><b>Cara:</b><br>Jumlahkan dulu permennya di dalam kurung, baru dibagi jumlah kantong."
+            },
+            {
+                id: 19,
+                section: "D",
+                sectionTitle: "Bagian D: Soal Cerita & Pecahan Sederhana",
+                text: "Seorang petani memanen 360 buah jeruk. Sebanyak $\\frac{1}{4}$ dari total jeruk tersebut dijual ke toko buah. Dari sisa jeruk yang ada, $\\frac{1}{3}$ bagian dibagikan kepada tetangganya. Sisa jeruk terakhir kemudian dibagikan secara merata kepada 6 orang saudaranya. Banyak jeruk yang diterima oleh setiap saudara adalah....",
+                options: [
+                    { id: "a", text: "30 buah" },
+                    { id: "b", text: "45 buah" },
+                    { id: "c", text: "60 buah" },
+                    { id: "d", text: "90 buah" }
+                ],
+                correct: "a",
+                explanation: "<b>Jawaban: a. 30 buah</b><br><br><b>Cara:</b><br>- Dijual $\\frac{1}{4}$ dari $360 = 90$. Sisa = $360 - 90 = 270$.<br>- Ke tetangga $\\frac{1}{3}$ dari $270 = 90$. Sisa = $270 - 90 = 180$.<br>- Dibagi 6 saudara = $180 \\div 6 = \\mathbf{30\\text{ buah}}$."
+            },
+            {
+                id: 20,
+                section: "D",
+                sectionTitle: "Bagian D: Soal Cerita & Pecahan Sederhana",
+                text: "Sebuah panti asuhan menerima 600 buku bacaan. Panti asuhan A menerima $\\frac{1}{5}$ dari total buku. Panti asuhan B menerima 180 buku. Sisa buku dibagikan sama rata kepada panti asuhan C dan D. Jumlah buku yang diterima panti asuhan C adalah....",
+                options: [
+                    { id: "a", text: "150 buku" },
+                    { id: "b", text: "120 buku" },
+                    { id: "c", text: "300 buku" },
+                    { id: "d", text: "240 buku" }
+                ],
+                correct: "a",
+                explanation: "<b>Jawaban: a. 150 buku</b><br><br><b>Cara:</b><br>- Panti A = $\\frac{1}{5}$ dari $600 = 120$.<br>- Panti B = $180$.<br>- Total A & B = $120 + 180 = 300$. Sisa = $600 - 300 = 300$.<br>- Dibagi rata ke Panti C dan D = $300 \\div 2 = \\mathbf{150\\text{ buku}}$."
+            }
+        ];
+
+        // State Tracking
+        let userAnswers = {};
+        let score = 0;
+        let currentFilter = 'all';
+
+        // Render Questions
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+
+            const filteredData = currentFilter === 'all' 
+                ? questionsData 
+                : questionsData.filter(q => q.section === currentFilter);
+
+            filteredData.forEach((q) => {
+                const qCard = document.createElement('div');
+                qCard.className = "border-2 border-pink-200 rounded-2xl p-5 bg-white shadow-sm hover:border-pink-300 transition-all space-y-4";
+                qCard.id = `q-card-${q.id}`;
+
+                // Clean formatting string lines
+                const formattedText = q.text.replace(/\n/g, '<br>');
+
+                let optionsHTML = '';
+                q.options.forEach(opt => {
+                    const isSelected = userAnswers[q.id] === opt.id;
+                    const isCorrect = opt.id === q.correct;
+                    let btnClass = "w-full text-left p-3 rounded-xl border-2 font-medium text-sm flex items-start gap-3 transition-all ";
+
+                    if (userAnswers[q.id]) {
+                        if (isSelected && isCorrect) {
+                            btnClass += "bg-emerald-100 border-emerald-400 text-emerald-900";
+                        } else if (isSelected && !isCorrect) {
+                            btnClass += "bg-rose-100 border-rose-400 text-rose-900";
+                        } else if (isCorrect) {
+                            btnClass += "bg-emerald-50 border-emerald-300 text-emerald-800";
+                        } else {
+                            btnClass += "bg-gray-50 border-gray-200 text-gray-400 opacity-60";
+                        }
+                    } else {
+                        btnClass += "bg-white border-pink-100 hover:border-pink-300 hover:bg-pink-50/50 text-gray-700";
+                    }
+
+                    optionsHTML += `
+                        <button onclick="selectOption(${q.id}, '${opt.id}')" ${userAnswers[q.id] ? 'disabled' : ''} class="${btnClass}">
+                            <span class="w-6 h-6 rounded-full border border-pink-300 flex items-center justify-center font-bold text-xs shrink-0 ${isSelected ? 'bg-pink-400 text-white' : 'bg-pink-50 text-pink-600'}">
+                                ${opt.id.toUpperCase()}
+                            </span>
+                            <span class="pt-0.5">${opt.text}</span>
+                        </button>
+                    `;
+                });
+
+                qCard.innerHTML = `
+                    <div class="flex items-center justify-between border-b border-pink-100 pb-2">
+                        <span class="y2k-badge">Soal No. ${q.id}</span>
+                        <span class="text-xs font-semibold text-purple-500">${q.sectionTitle}</span>
+                    </div>
+
+                    <div class="text-sm md:text-base font-semibold text-y2k-darkText leading-relaxed">
+                        ${formattedText}
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 pt-2">
+                        ${optionsHTML}
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between pt-3 border-t border-pink-100 gap-2">
+                        <button onclick="toggleExplanation(${q.id})" class="y2k-btn text-xs px-3 py-1.5 rounded-xl text-purple-700 flex items-center gap-1.5">
+                            <i class="fa-solid fa-lightbulb text-yellow-500"></i>
+                            <span id="exp-btn-text-${q.id}">Buka Pembahasan</span>
+                        </button>
+                        
+                        <div id="status-${q.id}" class="text-xs font-bold">
+                            ${userAnswers[q.id] ? (userAnswers[q.id] === q.correct ? '<span class="text-emerald-600">✨ Benar! (+5)</span>' : '<span class="text-rose-500">❌ Kurang Tepat</span>') : '<span class="text-gray-400">Belum Dijawab</span>'}
+                        </div>
+                    </div>
+
+                    <div id="explanation-${q.id}" class="hidden p-4 rounded-xl bg-purple-50/80 border-2 border-purple-200 text-xs md:text-sm text-purple-900 leading-relaxed space-y-2 mt-2">
+                        <div class="font-bold text-purple-700 flex items-center gap-1">
+                            <span>🔑</span> PEMBAHASAN LENGKAP:
+                        </div>
+                        <div>${q.explanation}</div>
+                    </div>
+                `;
+
+                container.appendChild(qCard);
+            });
+
+            // Re-render KaTeX to ensure math formulas match the strict rule
+            renderMathInElement(container, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: false},
+                    {left: "$", right: "$", display: false}
+                ],
+                throwOnError : false
+            });
+        }
+
+        // Option selection handler
+        function selectOption(qId, optionId) {
+            if (userAnswers[qId]) return;
+
+            userAnswers[qId] = optionId;
+            const q = questionsData.find(item => item.id === qId);
+
+            if (optionId === q.correct) {
+                score += 5;
+                confetti({
+                    particleCount: 30,
+                    spread: 60,
+                    origin: { y: 0.8 }
+                });
+            }
+
+            updateStats();
+            renderQuestions();
+
+            // Auto open explanation on answer
+            const expEl = document.getElementById(`explanation-${qId}`);
+            if (expEl && expEl.classList.contains('hidden')) {
+                toggleExplanation(qId);
+            }
+        }
+
+        // Toggle Explanation Visibility
+        function toggleExplanation(qId) {
+            const expEl = document.getElementById(`explanation-${qId}`);
+            const btnText = document.getElementById(`exp-btn-text-${qId}`);
+
+            if (expEl.classList.contains('hidden')) {
+                expEl.classList.remove('hidden');
+                if (btnText) btnText.innerText = "Tutup Pembahasan";
+            } else {
+                expEl.classList.add('hidden');
+                if (btnText) btnText.innerText = "Buka Pembahasan";
+            }
+        }
+
+        // Update Score and Answered display
+        function updateStats() {
+            document.getElementById('scoreDisplay').innerText = score;
+            const answeredCount = Object.keys(userAnswers).length;
+            document.getElementById('answeredDisplay').innerText = `${answeredCount} / 20`;
+        }
+
+        // Reset progress
+        function resetProgress() {
+            if (confirm("Reset semua jawaban dan skor Kitty?")) {
+                userAnswers = {};
+                score = 0;
+                updateStats();
+                renderQuestions();
+            }
+        }
+
+        // Filter Questions by category
+        function filterQuestions(category) {
+            currentFilter = category;
+            
+            // Toggle active styling
+            ['all', 'A', 'B', 'C', 'D'].forEach(cat => {
+                const btn = document.getElementById(`btn-filter-${cat}`);
+                if (btn) {
+                    if (cat === category) {
+                        btn.className = "px-3 py-1.5 rounded-full bg-white text-pink-600 font-bold border border-pink-300 shadow-sm transition-all active-filter";
+                    } else {
+                        btn.className = "px-3 py-1.5 rounded-full bg-white/80 text-purple-700 font-bold border border-purple-200 hover:bg-white transition-all";
+                    }
+                }
+            });
+
+            renderQuestions();
+        }
+
+        // Interactive Scratchpad Logic
+        let canvas, ctx, isDrawing = false, strokeColor = '#FF3399';
+
+        function initScratchpad() {
+            canvas = document.getElementById('scratchCanvas');
+            ctx = canvas.getContext('2d');
+            
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = strokeColor;
+
+            // Touch & Mouse Event Listeners
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseleave', stopDrawing);
+
+            canvas.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                const mouseEvent = new MouseEvent('mousedown', {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(mouseEvent);
+            });
+
+            canvas.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                const mouseEvent = new MouseEvent('mousemove', {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(mouseEvent);
+            });
+
+            canvas.addEventListener('touchend', (e) => {
+                const mouseEvent = new MouseEvent('mouseup', {});
+                canvas.dispatchEvent(mouseEvent);
+            });
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const rect = canvas.getBoundingClientRect();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            const rect = canvas.getBoundingClientRect();
+            ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+            ctx.stroke();
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function setScratchColor(color) {
+            strokeColor = color;
+            if (ctx) ctx.strokeStyle = strokeColor;
+        }
+
+        function clearScratchpad() {
+            if (ctx && canvas) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        function toggleScratchpad() {
+            const modal = document.getElementById('scratchpadModal');
+            modal.classList.toggle('hidden');
+        }
+
+        // On Page Load Initialization
+        window.onload = function() {
+            renderQuestions();
+            initScratchpad();
+
+            // Render all LaTeX formulas on static sections
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: "$$", right: "$$", display: false},
+                    {left: "$", right: "$", display: false}
+                ],
+                throwOnError : false
+            });
+        };
+    </script>
+</body>
+</html>
